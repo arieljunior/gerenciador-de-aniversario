@@ -5,4 +5,9 @@ class Person:
         self.email = email
     
     def toString(_self):
-        return f"NOME COMPLETO = {_self.fullname}\nDATA DE ANIVERSÁRIO = {_self.datebirth}\nEMAIL = {_self.email}\n"
+        return f" NOME COMPLETO = {_self.fullname}\n DATA DE ANIVERSÁRIO = {_self.datebirth}\n EMAIL = {_self.email}\n"
+    
+    def getLineToCSV(_self):
+        return "\n" + ",".join([_self.fullname, _self.datebirth, _self.email])
+    
+# print(Person("ariel junior", "17/05/1996", "ariel@teste.com"))
