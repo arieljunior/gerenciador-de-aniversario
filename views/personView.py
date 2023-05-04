@@ -1,6 +1,6 @@
 import infra.personRepository as personRepository
-import tableView
-import entities.personEntity as Person
+import views.tableView as tableView
+from entities.personEntity import Person
 
 def showAllPersons():
     persons = personRepository.getAllPersons();

@@ -1,6 +1,6 @@
-from entities.person import Person
+from entities.personEntity import Person
 
-PATH_DATA_PERSONS = "data/pessoas.csv"
+PATH_DATA_PERSONS = "infra/data/pessoas.csv"
 
 def getAllPersons():
     persons = []

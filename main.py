@@ -1,3 +1,3 @@
-from views.menu import startMenu
+from views.menuView import startMenu
 
 startMenu()
