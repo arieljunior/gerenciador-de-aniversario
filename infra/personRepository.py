@@ -23,3 +23,14 @@ def savePerson(person):
         return {"success": True, "message": f"{person.fullname} foi salvo com sucesso"}
     else:
         return {"success": False, "message": "Todos os campos são obrigatórios!"}
+    
+def getPersonsByMonthBirth(month: int):
+    persons = getAllPersons()
+    result = []
+    for person in persons:
+        dateArray = person.datebirth.split("/")
+        if len(dateArray) < 3:
+            continue
+        if month == int(dateArray[1]):
+            result.append(person)
+    return result
