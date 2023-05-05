@@ -36,13 +36,13 @@ def startSubmenuConsultPersons():
                 personView.showAllPersons()
                 break
             case "2":
-                # Buscar aniversariantes
-                pass
+                personView.showBirthdays()
+                break
             case "3":
                 month = int(input("Qual é o mês (1 a 12)? "))
                 personView.showPersonsByMonth(month)
                 break
             case "4":
-                pass
+                break
             case other:
                 print("Opção inválida")

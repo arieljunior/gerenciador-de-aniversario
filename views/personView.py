@@ -1,6 +1,7 @@
 import infra.personRepository as personRepository
 import views.tableView as tableView
 from entities.personEntity import Person
+from datetime import date
 
 def showTablePersons(persons):
     headerTable = tableView.getLine(Person.getColumnsName(), True)
@@ -28,6 +29,16 @@ def showPersonsByMonth(month: int):
     if month < 1 or month > 12:
         print("Mês inválido")
         return
-    persons = personRepository.getPersonsByMonthBirth(month)
+    persons = personRepository.getPersonsByMonth(month)
+    if len(persons) == 0:
+        print("Ninguém faz aniversário nesse mês")
+        return
     showTablePersons(persons)
 
+def showBirthdays():
+    persons = personRepository.getBirthdays()
+    if len(persons) == 0:
+        print("Ninguém faz aniversário hoje")
+        return
+    
+    showTablePersons(persons)

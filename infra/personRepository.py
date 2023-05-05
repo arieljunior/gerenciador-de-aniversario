@@ -1,4 +1,5 @@
 from entities.personEntity import Person
+from datetime import date
 
 PATH_DATA_PERSONS = "infra/data/pessoas.csv"
 
@@ -24,7 +25,7 @@ def savePerson(person):
     else:
         return {"success": False, "message": "Todos os campos são obrigatórios!"}
     
-def getPersonsByMonthBirth(month: int):
+def getPersonsByMonth(month: int):
     persons = getAllPersons()
     result = []
     for person in persons:
@@ -32,5 +33,19 @@ def getPersonsByMonthBirth(month: int):
         if len(dateArray) < 3:
             continue
         if month == int(dateArray[1]):
+            result.append(person)
+    return result
+
+def getBirthdays():
+    persons = getAllPersons()
+    month = date.today().month
+    day = date.today().day
+
+    result = []
+    for person in persons:
+        dateArray = person.datebirth.split("/")
+        if len(dateArray) < 3:
+            continue
+        if day == int(dateArray[0]) and month == int(dateArray[1]):
             result.append(person)
     return result
