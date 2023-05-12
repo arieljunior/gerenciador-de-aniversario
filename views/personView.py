@@ -1,7 +1,6 @@
 import infra.personRepository as personRepository
 import views.tableView as tableView
 from entities.personEntity import Person
-from datetime import date
 
 def showTablePersons(persons):
     headerTable = tableView.getLine(Person.getColumnsName(), True)
