@@ -2,16 +2,21 @@ import smtplib
 from email.mime.text import MIMEText
 from string import Template
 from email.mime.multipart import MIMEMultipart
+import os 
+from dotenv import load_dotenv
 
-EMAIL_LOGIN = ""
-PASSWORD_LOGIN = ""
-HOST = 'smtp.gmail.com'
-PORT = 587
+load_dotenv()
+
+EMAIL_LOGIN = os.getenv('SMTP_USER')
+PASSWORD_LOGIN = os.getenv('SMTP_PASSWORD')
+HOST = os.getenv('SMTP_HOST')
+PORT = os.getenv('SMTP_PORT')
+TEMPLATE_EMAIL_PATH= os.getenv('TEMPLATE_EMAIL_PATH')
 
 def sendEmailBirthday(receivers: list):
     countSend = 0
     try:
-        with open('template-email.txt', 'r', encoding='utf-8') as template_file:
+        with open(TEMPLATE_EMAIL_PATH, 'r', encoding='utf-8') as template_file:
             template_file_content = Template(template_file.read())
 
         server = smtplib.SMTP(HOST, PORT)
