@@ -4,6 +4,7 @@ from string import Template
 from email.mime.multipart import MIMEMultipart
 import os 
 from dotenv import load_dotenv
+from email_validator import validate_email
 
 load_dotenv()
 
@@ -25,10 +26,10 @@ def sendEmailBirthday(receivers: list):
 
         for receiver in receivers:
             print(receiver)
-            content = template_file_content.substitute(PERSON_NAME=receiver.get("name"))
+            content = template_file_content.substitute(PERSON_NAME=receiver.fullname)
             msg = MIMEMultipart()
             msg['From'] = EMAIL_LOGIN
-            msg['To'] = receiver.get("email")
+            msg['To'] = receiver.email
             msg['Subject'] = "Parabéns"
             msg.attach(MIMEText(content, 'plain'))
             server.send_message(msg)
@@ -40,3 +41,10 @@ def sendEmailBirthday(receivers: list):
         print(ex)
     finally:
         return countSend
+
+def isValidEmail(email):
+    try:
+        validate_email(email)
+        return True
+    except:
+        return False
